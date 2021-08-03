@@ -1,0 +1,9 @@
+<h1>Greenのスクレイピング</h1>
+
+<%= @title.each do |ele| %>
+  <p><%= ele.inner_text %></p>
+<% end %>
+<%= @option.each do |op| %>
+  <p><%= op.inner_text %></p>
+<% end %>
+
