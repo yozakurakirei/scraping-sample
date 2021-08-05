@@ -13,6 +13,7 @@ gem 'activerecord-import'
 gem 'nokogiri'
 gem 'kimurai'
 gem 'mechanize'
+gem 'selenium-webdriver'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
