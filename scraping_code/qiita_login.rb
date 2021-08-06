@@ -1,5 +1,6 @@
 require 'mechanize'
 
+# これは失敗
 agent = Mechanize.new
 
 sleep 1
