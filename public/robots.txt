@@ -1,1 +1,15 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+
+scraping OK!!
+
+# 指示を与えるクローラー
+User-agent: 
+
+# 拒否
+Disallow:
+
+# 許可
+Allow:
+
+# アクセスは10秒まて
+Crawl-delay: 10
