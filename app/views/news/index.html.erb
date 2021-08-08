@@ -1,0 +1,7 @@
+<h1>NewsAPIからのニュース</h1>
+<hr>
+<div class="articles">
+  <% @articles["articles"].each do |article| %>
+    <p><%= link_to article["title"], article["url"] %></p>
+  <% end %>
+</div>

@@ -1,5 +1,8 @@
 class WebsController < ApplicationController
 
+  require 'open-uri'
+  require 'selenium-webdriver'
+
   def index
     agent = Mechanize.new
     page = agent.get("https://www.yahoo.co.jp/")
@@ -21,8 +24,20 @@ class WebsController < ApplicationController
   end
 
   def test
-    agent = Mechanize.new
-    page = agent.get('http://www.sweetsbox.jp/')
-    @test = page.search('li a')
+    # option = Options()
+    # option.add_argument('--headless')
+    # @driver = webdriver.chrome(options = option)
+    @driver = Selenium::WebDriver.for :chrome
+    sleep 1
+    
+    @driver.navigate.to 'https://www.green-japan.com/'
+    # 特定のリソースを取得
+    
+    sleep 1
+    @title = @driver.find_element(:css, '.card-info__heading-area__title').text
+    
+    @tag = @driver.find_element(:css, '.code-tag').text
+    
+    @area =  @driver.find_element(:css, '.card-info__detail-area__text').text
   end
 end

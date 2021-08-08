@@ -1,11 +1,13 @@
 class PaypaysController < ApplicationController
 
-  include Paypay
-
   def index
-    if params[:format] == "paypay"
-      @paypay = paypay
-    end
-    @paypay = Paypay.new
+    sleep 1
+    agent = Mechanize.new
+    page = agent.get("https://paypay.ne.jp/notice/20200604/01/")
+  
+    sleep 1
+    @elements = page.search('tr/td')
+  
+    puts @elements
   end
 end
