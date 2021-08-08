@@ -1,41 +1,39 @@
-# module PaypaysConcern
-#   require 'nokogiri'
-#   require 'open-uri'
-
-#   def paypay_shops
-#     url = 'https://paypay.ne.jp/notice/20200604/01/'
-
-#     charset = nil
-#     html = opne(url) do |f|
-#       charset = f.charset
-#       f.read
-#     end
-
-#     doc = Nokogiri::HTML.parse(html, nil, charset)
-
-#     @shops = []
-
-#     doc.xpath('//div[@class="article__contents post"]').css('tr').each do |shop|
-#       @shops << shop.css("td[1]").text
-#     end
-
-#     @shops = @shops.drop(1)
-#     puts @shops
-
-#   end
-# end
-
-module PaypayScrapesConcern
+module Paypay
   require 'open-uri'
-  require 'nokogiri'
 
-  url = 'https://paypay.ne.jp/notice/20200604/01/'
+  def paypay_scraping
 
-  sleep 1
+    ActiveRecord::Base.establish_connection(
+      :adapter=>"postgresql",
+      :pool=>5,
+      :timeout=>5000,
+      :encoding=>"utf8",
+      :username=>"MyApp",
+      :password=>nil,
+      :host=>"localhost",
+      :database=>"MyApp_development"
+    )
 
-  html = URI.open(url).read
-  doc = Nokogiri::HTML.parse(html)
-  page = doc.css("h1")
+    sleep 1
+    url = 'https://paypay.ne.jp/notice/20200604/01/'
 
-  puts page.text
+    charset = nil
+    html = URI.open(url) do |f|
+      charset = f.charset
+      f.read
+    end
+
+    doc = Nokogiri::HTML.parse(html, nil, charset)
+
+    @paypays = []
+
+    doc.xpath('//tr/td').each do |node|
+      @paypays << node.text 
+    end
+
+    @paypays = @paypays.drop(1)
+    pust @paypays
+  end
 end
+
+puts "hello scraping"
