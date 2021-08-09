@@ -27,6 +27,7 @@ class WebsController < ApplicationController
     Selenium::WebDriver::Chrome.path = ENV.fetch('GOOGLE_CHROME_BIN', nil)
     
     options = Selenium::WebDriver::Chrome::Options.new(
+      options.add_argument("window-size=500,500")
       prefs: { 'profile.default_content_setting_values.notifications': 2 },
       binary: ENV.fetch('GOOGLE_CHROME_SHIM', nil)
     )  
