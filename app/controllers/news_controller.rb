@@ -7,5 +7,11 @@ class NewsController < ApplicationController
     @articles = JSON.parse(article)
     # p @articles
   end
+  
+  def yahoo
+    uri = "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch?appid=dj00aiZpPWdzSHp0TXhRWlpaRiZzPWNvbnN1bWVyc2VjcmV0Jng9ZjE-&genre_category_id=635&sort=-sold"
+    hit = URI.open(uri).read
+    @hits = JSON.parse(hit)
+  end
 end
 

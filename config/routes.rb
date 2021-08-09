@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'news/index'
-  get 'news/data'
+  root 'news#yahoo'
   get 'scrapes/test'
   get 'scrapes/green'
   get 'scrapes/indeed'
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'scrapes/wantedly'
   get 'scrapes/hellowork'
   get 'paypays/index'
-  root 'webs#index'
+  get 'webs/index'
   get 'webs/green'
   get 'webs/indeed'
   get 'webs/test'

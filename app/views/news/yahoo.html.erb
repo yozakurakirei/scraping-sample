@@ -1,0 +1,11 @@
+<h1>yahooAPI</h1>
+
+<% @hits["hits"].each do |n| %>
+	<div class="yahoo p-4">
+		<%= link_to n["url"] do %>
+			<h2 class="font-bold"><%= n["name"] %></h2>
+			<%# <%= image_tag n["image small"], :size => "240x240" %>
+			<p><%= n["description"] %></p>
+		<% end %>	
+	</div>
+<% end %>
