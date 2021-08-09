@@ -15,7 +15,7 @@ gem 'kimurai'
 gem 'mechanize'
 gem 'selenium-webdriver'
 gem 'webdrivers'
-gem 'rexml'
+gem 'rexml' # 追加
 
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

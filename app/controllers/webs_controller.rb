@@ -1,7 +1,14 @@
 class WebsController < ApplicationController
-
   require 'open-uri'
   require 'selenium-webdriver'
+  require 'webdrivers'
+
+  # Selenium::WebDriver::Chrome.path = ENV.fetch('GOOGLE_CHROME_BIN', nil)
+  # options = Selenium::WebDriver::Chrome::Options.new(
+  #   prefs: { 'profile.default_content_setting_values.notifications': 2
+  # },
+  #   binary: ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+  # )
 
   def index
     agent = Mechanize.new
@@ -24,10 +31,8 @@ class WebsController < ApplicationController
   end
 
   def test
-    # option = Options()
-    # option.add_argument('--headless')
-    # @driver = webdriver.chrome(options = option)
     @driver = Selenium::WebDriver.for :chrome
+    
     sleep 1
     
     @driver.navigate.to 'https://www.green-japan.com/'
