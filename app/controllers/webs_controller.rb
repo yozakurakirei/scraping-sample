@@ -3,14 +3,6 @@ class WebsController < ApplicationController
   require 'selenium-webdriver'
   require 'webdrivers'
 
-  # Selenium::WebDriver::Chrome.path = ENV.fetch('GOOGLE_CHROME_BIN', nil)
-  
-  options = Selenium::WebDriver::Chrome::Options.new(
-    prefs: { 'profile.default_content_setting_values.notifications': 2 },
-    binary: ENV.fetch('GOOGLE_CHROME_SHIM', nil)
-  )  
-
-
   def index
     agent = Mechanize.new
     page = agent.get("https://www.yahoo.co.jp/")
@@ -32,9 +24,15 @@ class WebsController < ApplicationController
   end
 
   def test
+    Selenium::WebDriver::Chrome.path = ENV.fetch('GOOGLE_CHROME_BIN', nil)
+    
+    options = Selenium::WebDriver::Chrome::Options.new(
+      prefs: { 'profile.default_content_setting_values.notifications': 2 },
+      binary: ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+    )  
 
 
-    @driver = Selenium::WebDriver.for :chrome
+    @driver = Selenium::WebDriver.for :chrome, options: options
     
     sleep 1
     
