@@ -34,12 +34,12 @@ class WebsController < ApplicationController
 
     @driver = Selenium::WebDriver.for :chrome, options: options
     
-    sleep 1
+    sleep 2
     
     @driver.navigate.to 'https://www.green-japan.com/'
     # 特定のリソースを取得
     
-    sleep 1
+    sleep 2
     @title = @driver.find_element(:css, '.card-info__heading-area__title').text
     
     @tag = @driver.find_element(:css, '.code-tag').text
