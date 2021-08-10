@@ -13,5 +13,6 @@ class NewsController < ApplicationController
     hit = URI.open(uri).read
     @hits = JSON.parse(hit)
   end
+
 end
 

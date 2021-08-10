@@ -1,5 +1,6 @@
 class WebsController < ApplicationController
   require 'open-uri'
+  require 'nokogiri'
   require 'selenium-webdriver'
   require 'webdrivers'
 
@@ -18,9 +19,9 @@ class WebsController < ApplicationController
 
   def indeed
     agent = Mechanize.new
-    page = agent.get("https://jp.indeed.com/%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E9%96%A2%E9%80%A3%E3%81%AE%E6%B1%82%E4%BA%BA%E6%9D%B1%E4%BA%AC")
-    @elements = page.search('h1')
-    @elements.inner_text
+    page = agent.get("https://jp.stanby.com/search?q=IT%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%20%E6%AD%A3%E7%A4%BE%E5%93%A1&sr_fr=job_serp&utm_source=yjjob&utm_medium=featured&utm_campaign=yj_full")
+    @elements = page.search('.job')
+    @elements[0].text
   end
 
   def test
@@ -45,5 +46,30 @@ class WebsController < ApplicationController
     @tag = @driver.find_element(:css, '.code-tag').text
     
     @area =  @driver.find_element(:css, '.card-info__detail-area__text').text
+  end
+
+  def paypay
+#     sleep 1
+#     url = 'https://paypay.ne.jp/notice/20200604/01/'
+
+#     sleep 1 
+#     html = URI.open(url).read
+#     doc = Nokogiri::HTML.parse(html)
+#     @shops = doc.css('tr/td')
+#   end
+#   puts @shops
+  url = "https://scr-labo.com/sample/chap2.php"
+  sleep 1
+  html = URI.open(url).read
+  doc = Nokogiri::HTML.parse(html)
+  product_elems = doc.css('div.card')
+  @products = product_elems.map do |product|
+    name  = product.at_css('div.card-header').text
+    desc  = product.at_css('div.card-body p').text
+    price = product.at_css('div.card-footer').text.delete("^0-9")
+    # { name: name, desc: desc, price: price }
+  end
+  
+  puts @products
   end
 end

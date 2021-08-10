@@ -1,5 +1,7 @@
-<h1>indeedのスクレイピング</h1>
+<h1>スタンバイのスクレイピング</h1>
 
 <%= @elements.each do |ele| %>
-  <p><%= ele.inner_text %></p>
+  <div class="job p-4">
+    <p><%= ele.inner_text %></p>
+  </div>
 <% end %>

@@ -1,0 +1,13 @@
+<h1>yahoo求人情報</h1>
+
+<p>yahooお仕事検索から引っ張ってきました</p>
+
+<% @results['results'].each do |result| %>
+  <h1><%= result['title'] %></h1>
+  <%# <%= image_tag result['imgUrlPc'] %> 
+  <ul>
+    <li><%= result['workLocationPrefecture'] %></li>
+    <li><%= result['employmentTypeNot'] %></li>
+    <li><%= result['salaryMin']%>円〜<%= result['salaryMax'] %>円</li>
+  </ul>
+<% end %>

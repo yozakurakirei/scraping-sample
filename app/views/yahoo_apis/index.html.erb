@@ -1,0 +1,6 @@
+<h1>yahoo企業情報</h1>
+
+<% @results["results"].each do |result| %>
+  <h1><%= result["name"] %></h1>
+  <p><%= result["prText"] %></p>
+<% end %>

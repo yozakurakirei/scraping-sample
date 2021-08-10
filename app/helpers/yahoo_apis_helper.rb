@@ -1,0 +1,2 @@
+module YahooApisHelper
+end
